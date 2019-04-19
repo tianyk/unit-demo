@@ -1,8 +1,11 @@
-import Vue from 'vue'
-import App from './App.vue'
+import App from './App.vue';
 
-Vue.config.productionTip = false
+/* istanbul ignore next */
+const install = App.install = (Vue) => Vue.component(App.name, App);
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+/* istanbul ignore if */
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
+}
+
+export default App;

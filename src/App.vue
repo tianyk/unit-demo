@@ -1,28 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="question">
+    <div style="background: #81cdc1">
+      <h2>题型二</h2>
+
+      <span>{{question && question.content}}</span>
+
+      <button @click="$emit('next', 'xxx')">next</button>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+const { name } = require("../package.json");
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+  name,
+  props: ["question", "answer", "mode"]
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
 </style>
