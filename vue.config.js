@@ -26,11 +26,9 @@ module.exports = {
         .tap(args => {
           if (!args[0]) args[0] = {};
           const arg = {
-            component: pkg.name,
-            inlineSource: '.(js|css)$'
+            component: pkg.name
           }
           Object.assign(args[0], arg);
-          console.log(args)
           return args;
         });
     }
@@ -42,13 +40,6 @@ module.exports = {
       Object.assign(definitions[0], define);
       return definitions;
     });
-  },
-  configureWebpack: {
-    // build模式下entry不起作用
-    // entry: './foo/bar.js',
-    plugins: [
-      // new HtmlWebpackInlineSourcePlugin()
-    ]
   }
 }
 
