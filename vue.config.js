@@ -1,3 +1,4 @@
+// const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const pkg = require('./package.json');
 
 /**
@@ -19,22 +20,34 @@ module.exports = {
   runtimeCompiler: !isProd(),
   css: { extract: false },
   chainWebpack: config => {
-    if (!isProd()) {
+    if (process.argv[2] === 'server') {
       config
         .plugin('html')
         .tap(args => {
+          if (!args[0]) args[0] = {};
           const arg = {
-            component: pkg.name
+            component: pkg.name,
+            inlineSource: '.(js|css)$'
           }
           Object.assign(args[0], arg);
           return args;
-        })
+        });
     }
+
+    config.plugin('define').tap(definitions => {
+      const define = {
+        COMPONENT_NAME: JSON.stringify(pkg.name)
+      };
+      Object.assign(definitions[0], define);
+      return definitions;
+    });
   },
   configureWebpack: {
-    output: {
-      libraryTarget: 'umd', // universal module definition
-    }
+    // 不起作用
+    entry: './foo/bar.js',
+    plugins: [
+      // new HtmlWebpackInlineSourcePlugin()
+    ]
   }
 }
 

@@ -11,10 +11,9 @@
 </template>
 
 <script>
-const { name } = require("../package.json");
-
 export default {
-  name,
+  /* eslint no-undef:0 */
+  name: COMPONENT_NAME,
   props: ["question", "answer", "mode"]
 };
 </script>
