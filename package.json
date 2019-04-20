@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build --target lib --mode development",
+    "build": "vue-cli-service build --target lib ./src/main.js",
     "serve": "vue-cli-service serve --open",
     "dev": "npm run serve",
     "lint": "vue-cli-service lint"

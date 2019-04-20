@@ -20,7 +20,7 @@ module.exports = {
   runtimeCompiler: !isProd(),
   css: { extract: false },
   chainWebpack: config => {
-    if (process.argv[2] === 'server') {
+    if (process.argv[2] === 'serve') {
       config
         .plugin('html')
         .tap(args => {
@@ -30,6 +30,7 @@ module.exports = {
             inlineSource: '.(js|css)$'
           }
           Object.assign(args[0], arg);
+          console.log(args)
           return args;
         });
     }
@@ -43,8 +44,8 @@ module.exports = {
     });
   },
   configureWebpack: {
-    // 不起作用
-    entry: './foo/bar.js',
+    // build模式下entry不起作用
+    // entry: './foo/bar.js',
     plugins: [
       // new HtmlWebpackInlineSourcePlugin()
     ]
