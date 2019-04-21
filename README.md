@@ -73,14 +73,26 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 1. build entry 入口问题
 
     <https://github.com/vuejs/vue-cli/blob/dev/packages/%40vue/cli-service/lib/commands/build/index.js#L47>
+    
+	源码中已经写死，要么是build模式下需要手动指定`entry`为`./src/main.js`，否则默认为`src/App.vue`
 
-    build 模式下entry需要手动指定到`./src/main.js`
-
-2. demo.html 问题
+2. `demo.html`定制问题
 
     <https://github.com/vuejs/vue-cli/blob/dev/packages/%40vue/cli-service/lib/commands/build/resolveLibConfig.js#L21>
-
     <https://github.com/vuejs/vue-cli/blob/dev/packages/%40vue/cli-service/lib/commands/build/resolveLibConfig.js#L69>
+
+	源码中已经写死，在非Vue文件中使用`demo-lib-js.html`作为母版。
     
-    build 后自动生成的`demo.html`最好可定制，或者直接可以用。不在依赖`publich/demo.html`做测试预览。
-    
+3. 输出文件名问题
+
+	<https://github.com/vuejs/vue-cli/blob/dev/packages/@vue/cli-service/lib/commands/build/resolveLibConfig.js#L118>
+
+	`configureWebpack.output.filename`并不会起作用，合并后会被`entryName`覆盖掉。要想指定输出文件名可以通过编译参数`--filename`设置。
+
+4. `configureWebpack.output.library`配置重写后`demo.html`引用的`libName`不一致问题
+
+	<https://github.com/vuejs/vue-cli/blob/dev/packages/%40vue/cli-service/lib/commands/build/resolveLibConfig.js#L76>
+	<https://github.com/vuejs/vue-cli/blob/dev/packages/%40vue/cli-service/lib/commands/build/resolveLibConfig.js#L22>
+	<https://github.com/vuejs/vue-cli/blob/dev/packages/%40vue/cli-service/lib/commands/build/resolveLibConfig.js#L108>
+
+	重写`library`后并不会影响`libName`的值，源码中编译HTML时取值始终为`libName`。

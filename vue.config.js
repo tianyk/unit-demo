@@ -1,5 +1,8 @@
-// const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const camelCase = require("camelcase");
 const pkg = require("./package.json");
+
+// 命令 build serve
+const COMMAND = process.argv[2];
 
 /**
  * 环境变量
@@ -17,12 +20,12 @@ function isProd() {
 
 module.exports = {
   // publicPath: 'http://cdn.51talk.com/', 
-  productionSourceMap: false, 
+  productionSourceMap: false,
   // 非production包含运行时编译器
   runtimeCompiler: !isProd(),
   css: { extract: false },
   chainWebpack: config => {
-    if (process.argv[2] === "serve") {
+    if (COMMAND === "serve") {
       config
         .plugin("html")
         .tap(args => {
@@ -42,6 +45,18 @@ module.exports = {
       Object.assign(definitions[0], define);
       return definitions;
     });
+  },
+  configureWebpack: config => {
+    if (COMMAND === "build") {
+      return {
+        output: {
+          // library --name 指定 防止文件名出现下划线、中划线。统一转换为驼峰命名
+          library: camelCase(pkg.name),
+          // filename --filename 指定
+          libraryExport: "default"
+        }
+      };
+    }
   }
 };
 

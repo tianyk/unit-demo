@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build --target lib ./src/main.js",
+    "build": "vue-cli-service build --target lib --filename index --formats umd,umd-min ./src/main.js",
     "serve": "vue-cli-service serve --open",
     "dev": "npm run serve",
     "lint": "vue-cli-service lint"
@@ -19,6 +19,7 @@
     "@vue/cli-plugin-eslint": "^3.6.0",
     "@vue/cli-service": "^3.6.0",
     "babel-eslint": "^10.0.1",
+    "camelcase": "^5.3.1",
     "eslint": "^5.16.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-vue": "^5.0.0",
