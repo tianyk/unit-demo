@@ -8,6 +8,10 @@
         src="./assets/<4k.png"
         width="100"
       >
+      <img
+        src="./assets/ui.png"
+        width="100"
+      >
 
       <div>
         <button @click="submit('答案')">

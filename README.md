@@ -49,7 +49,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 	│   ├── App.vue               -- 组件源文件 **不允许**更改名字
 	│   ├── mixin.js              -- 组件公共方法、配置 **不允许**私自修改
 	│   ├── utils/                -- 工具包 **不允许**私自修改
-	│   ├── assets/               -- 项目依赖的静态文件（小于**4Kb**的静态文件不应该使用CDN）
+	│   ├── assets/               -- 项目依赖的静态文件（项目中的图片默认全部内联，小于**4Kb**的静态文件不应该使用CDN）
 	│   ├── components/           -- 组件目录（公共组件放置到发布到`npm`中）
 	│   └── main.js 
 	├── babel.config.js           -- babel配置文件 **不允许**私自修改

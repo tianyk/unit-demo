@@ -27,6 +27,7 @@ module.exports = {
   runtimeCompiler: !isProd(),
   css: { extract: false },
   chainWebpack: config => {
+    // 编译public.html 
     if (COMMAND === "serve") {
       config
         .plugin("html")
@@ -40,6 +41,7 @@ module.exports = {
         });
     }
 
+    // 组件名及版本
     config.plugin("define").tap(definitions => {
       const define = {
         COMPONENT_NAME: JSON.stringify(componentName),
@@ -48,6 +50,13 @@ module.exports = {
       Object.assign(definitions[0], define);
       return definitions;
     });
+
+    // 图片内敛
+    config.module
+      .rule("images")
+      .use("url-loader")
+      .loader("url-loader")
+      .tap(options => Object.assign(options, { limit: 10240000 }));
   },
   configureWebpack: config => {
     if (COMMAND === "build") {
