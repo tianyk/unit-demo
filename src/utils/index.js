@@ -1,0 +1,7 @@
+function noop() {
+
+}
+
+export {
+	noop
+};

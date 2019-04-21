@@ -18,13 +18,19 @@
 			continue.</strong>
 	</noscript>
 	<div id="app">
-		<question></question>
+		<question question="question"></question>
 	</div>
 
 	<script src="../dist/unit-demo.umd.js"></script>
 	<script>
 		window.onload = function () {
 			new Vue({
+				data: {
+					question: {
+						title: "题干",
+						content: "内容"
+					}
+				}, 
 				components: {
 					question: Vue.component('unit-demo')
 				}

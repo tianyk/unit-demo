@@ -18,14 +18,25 @@
 			continue.</strong>
 	</noscript>
 	<div id="app">
-		<question></question>
+		<question v-on:submit="next" :question="question"></question>
 	</div>
 
 	<script>
 		window.onload = function () {
 			new Vue({
+				data: {
+					question: {
+						title: "题干",
+						content: "内容"
+					}
+				},
 				components: {
 					question: Vue.component('<%= htmlWebpackPlugin.options.component %>')
+				},
+				methods: {
+					next(answer) {
+						console.log('收到答案: %o', answer);
+					}
 				}
 			}).$mount('#app');
 		}
