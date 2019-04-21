@@ -3,5 +3,5 @@ function noop() {
 }
 
 export {
-	noop
+  noop
 };
