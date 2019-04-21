@@ -25,4 +25,7 @@ rules:
     - always
   no-unused-vars: 
     - off
-  
+  vue/component-name-in-template-casing:
+    - off 
+  vue/name-property-casing: 
+    - off
