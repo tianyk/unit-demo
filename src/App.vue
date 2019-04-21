@@ -49,9 +49,11 @@
 import mixin from "./mixin.js";
 
 export default {
-  /* eslint no-undef:0 */
-  name: COMPONENT_NAME,
-  mixins: [mixin]
+  mixins: [mixin],
+  data() {
+    return {};
+  },
+  methods: {}
 };
 </script>
 

@@ -1,6 +1,7 @@
 {
-  "name": "unit-demo",
+  "name": "ut-sample",
   "version": "0.1.0",
+  "author": "", 
   "private": true,
   "scripts": {
     "build": "vue-cli-service build --target lib --filename index --formats umd,umd-min ./src/main.js",

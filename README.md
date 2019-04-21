@@ -39,8 +39,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 	.
 	├── README.md
 	├── dist/
-	├── package-lock.json
-	├── package.json
+	├── package-lock.json         -- 不建议删除
+	├── package.json              -- 仅可改动name、version、author三个属性
 	├── public/                   -- `run serve`使用<https://cli.vuejs.org/zh/guide/html-and-static-assets.html#public-%E6%96%87%E4%BB%B6%E5%A4%B9> **不允许**私自修改
 	│   ├── currentScript.js
 	│   ├── demo.html
@@ -66,6 +66,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 	```
 	
 	浏览器开启debug在控制台执行后面的代码`localStorage.debug = 'ut:*'`。
+
+5. 包名
+
+	包名前缀统一为`ut`开头。中划线或者下划线命名将统一转换为驼峰。编译后的模块名为包名的驼峰形式。
+	
+	例如本项目`ut-sample`编译后的名字为`utSample`。可通过`window.utSample`访问。
 	
 
 ## 问题
