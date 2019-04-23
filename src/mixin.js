@@ -40,12 +40,13 @@ export default {
 		 */
     $message(msg, type = "info") {
       debug("[$message] msg: %s, type: %s", msg, type);
+      this.$emit("message", msg, type);
     },
 
     /**
 		 * 提交答案
 		 *
-		 * @param {String|Array|Object} answer - 答案
+		 * @param {Object} answer - 答案 { answer: '', result: true }
 		 */
     submit(answer) {
       debug("[submit] answer: %o", answer);
