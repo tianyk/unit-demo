@@ -1,5 +1,4 @@
 const debug = require("./utils/debug")("ut:mixin");
-import { noop } from "./utils";
 
 export default {
   props: {
@@ -60,9 +59,19 @@ export default {
 		 * @param {Function} [cb=noop] - 回调函数
 		 * 
 		 */
-    startRecord(sentence, cb = noop) {
+    startRecord(sentence, cb) {
       debug("[startRecord] sentence: %s", sentence);
-      cb();
+      if (!cb) {
+        return new Promise((resolve, reject) => {
+          // window.nativeSDK.startRecord(sentence, ({ code, url, score }) => {
+          //   if (code) reject();
+          //   else resolve({ url, score });
+          // });
+          resolve();
+        });
+      } else {
+        cb();
+      }
     },
 
     /**
@@ -70,9 +79,15 @@ export default {
 		 * 
 		 * @param {Function} [cb=noop] - 回调函数
 		 */
-    stopRecord(cb = noop) {
+    stopRecord(cb) {
       debug("[stopRecord]");
-      cb();
+      if (!cb) {
+        return new Promise((resolve, reject) => {
+          resolve();
+        });
+      } else {
+        cb();
+      }
     },
 
     /**
@@ -81,9 +96,15 @@ export default {
 		 * @param {String} url - 音频URL 
 		 * @param {Function} [cb=noop] - 回调函数 播放异常中断或者结束会调用
 		 */
-    playAudio(url, cb = noop) {
+    playAudio(url, cb) {
       debug("[playAudio] url: %s", url);
-      cb();
+      if (!cb) {
+        return new Promise((resolve, reject) => {
+          resolve();
+        });
+      } else {
+        cb();
+      }
     },
 
     /**
@@ -91,9 +112,15 @@ export default {
 		 *
 		 * @param {Function} [cb=noop]
 		 */
-    pauseAudio(cb = noop) {
+    pauseAudio(cb) {
       debug("[pauseAudio]");
-      cb();
+      if (!cb) {
+        return new Promise((resolve, reject) => {
+          resolve();
+        });
+      } else {
+        cb();
+      }
     },
 
     /**
@@ -101,9 +128,16 @@ export default {
 		 *
 		 * @param {Function} [cb=noop]
 		 */
-    stopAudio(cb = noop) {
+    stopAudio(cb) {
       debug("[stopAudio]");
-      cb();
+      if (!cb) {
+        return new Promise((resolve, reject) => {
+          resolve();
+        });
+      } else {
+        cb();
+      }
     }
   }
 };
+

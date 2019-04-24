@@ -45,6 +45,12 @@
           错误错信
         </button>
       </div>
+
+      <div>
+        <button @click="testAll()">
+          testAll(promise)
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +63,20 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+    async testAll() {
+      await this.submit("答案");
+      await this.startRecord("Abc");
+      try {
+        await this.stopRecord();
+      } catch(err) {
+        // 出错了
+      }
+      await this.playAudio("http://example.com/abc.mp3");
+      await this.pauseAudio();
+      await this.stopAudio();
+    }
+  }
 };
 </script>
 
