@@ -65,7 +65,7 @@ export default {
       await this.startRecord("Abc");
       try {
         await this.stopRecord();
-      } catch(err) {
+      } catch(ignored) {
         // 出错了
       }
       await this.playAudio("http://example.com/abc.mp3");
