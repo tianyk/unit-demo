@@ -5,11 +5,7 @@
       <p>{{ question.content }}</p>
 
       <img
-        src="./assets/<4k.png"
-        width="100"
-      >
-      <img
-        src="./assets/ui.png"
+        src="./assets/4k.png"
         width="100"
       >
 
