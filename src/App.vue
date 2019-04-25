@@ -52,6 +52,7 @@
 </template>
 
 <script>
+const debug = require("./utils/debug")("ut:app");
 import mixin from "./mixin.js";
 
 export default {
@@ -68,9 +69,12 @@ export default {
       } catch(ignored) {
         // 出错了
       }
-      await this.playAudio("http://example.com/abc.mp3");
+      await this.playAudio("http://video.51talk.com/na_web/coursereview/201801/1517207850.mp3");
       await this.pauseAudio();
       await this.stopAudio();
+
+      const duration = await this.getAudioDuration("http://video.51talk.com/na_web/coursereview/201801/1517207850.mp3");
+      debug("duration: %s", duration);
     }
   }
 };

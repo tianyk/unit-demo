@@ -137,6 +137,46 @@ export default {
       } else {
         cb();
       }
+    },
+
+    /**
+     * 获取音频时长
+     *
+     * @param {string} url - 
+     * @param {Function} cb - 回调函数
+     *          - err 
+     *          - duration
+     * @returns
+     */
+    getAudioDuration(url, cb) {
+      debug("[getAudioDuration] url: %s", url);
+      let audio = new Audio();
+      audio.autoplay = "metadata";
+      audio.volume = 0;
+      audio.src = url;
+      if (!cb) {
+        return new Promise((resolve, reject) => {
+          audio.onerror = (err) => {
+            reject(err);
+            audio = null;
+          };
+
+          audio.onloadedmetadata = () => {
+            resolve(audio.duration);
+            audio = null;
+          };
+        });
+      } else {
+        audio.onerror = (err) => {
+          cb(err);
+          audio = null;
+        };
+
+        audio.onloadedmetadata = () => {
+          cb(null, audio.duration);
+          audio = null;
+        };
+      }
     }
   }
 };
