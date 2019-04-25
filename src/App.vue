@@ -73,7 +73,7 @@ export default {
       await this.pauseAudio();
       await this.stopAudio();
 
-      const duration = await this.getAudioDuration("http://video.51talk.com/na_web/coursereview/201801/1517207850.mp3");
+      const duration = await this.getAudioDuration("http://s.kg.51talk.com/ef5f1e2e-9d43-4fda-b763-b9f23f8f6d90.mp3?_" + Date.now());
       debug("duration: %s", duration);
     }
   }
